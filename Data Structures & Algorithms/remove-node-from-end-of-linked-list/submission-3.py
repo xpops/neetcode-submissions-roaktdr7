@@ -1,0 +1,27 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+class Solution: # Two Pointers
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        
+        # create dummy
+        dummy = ListNode(0, head)
+        
+        # 간격 벌리기
+        l, r = dummy, head
+        for i in range(n):
+            r = r.next
+        
+        # 간격 유지하면서 같이가기
+        while r:
+            l = l.next
+            r = r.next
+        
+        l.next = l.next.next
+        return dummy.next
+
+
+        
